@@ -7,6 +7,11 @@ import os
 from pathlib import Path
 from datetime import datetime
 from io import StringIO
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 courts = ["PSA - McKinney 1", "PSA - McKinney 2", "PSA - McKinney 3", "PSA - McKinney 4",
           "PSA - McKinney 5", "PSA - McKinney 6", "PSA - McKinney 7", "PSA - McKinney 8",
@@ -19,25 +24,32 @@ courts = ["PSA - McKinney 1", "PSA - McKinney 2", "PSA - McKinney 3", "PSA - McK
 
 @csrf_exempt
 def basketball(request):
+    logger.info("Received request: %s", request)
     if request.method == 'POST' and 'files' in request.FILES:
         downloads_folder = str(Path.home() / "Downloads")
         file = request.FILES['files']
+        logger.info("Processing file: %s", file.name)
 
         try:
             # Read CSV data
             csv_data = file.read().decode('utf-8')
             data = pd.read_csv(StringIO(csv_data))
-            
+            logger.info("CSV data read successfully")
+
             # Ensure 'Date' column exists and extract date from the data
             if 'Date' not in data.columns:
+                logger.error("'Date' column missing in file")
                 return JsonResponse({"error": "Invalid file format: 'Date' column missing."}, status=400)
-            
+
             date_str = data['Date'].iloc[0]
             date = datetime.strptime(date_str, '%Y-%m-%d').strftime('%Y%m%d')
-            
+            logger.info("Date extracted: %s", date_str)
+
             # Process data for each court and save to Excel
-            with pd.ExcelWriter(os.path.join(downloads_folder, f'sorted_basketball_games_{date}.xlsx'), engine='xlsxwriter') as writer:
+            excel_file_path = os.path.join(downloads_folder, f'sorted_basketball_games_{date}.xlsx')
+            with pd.ExcelWriter(excel_file_path, engine='xlsxwriter') as writer:
                 for court in courts:
+                    logger.info("Processing court: %s", court)
                     sorted_data = process_data(data, court)
                     worksheet_name = court.split(" - ")[-1]
                     workbook = writer.book
@@ -53,11 +65,14 @@ def basketball(request):
 
                     sorted_data.to_excel(writer, sheet_name=worksheet_name, index=False, startrow=1, startcol=0)
 
+            logger.info("Excel file created successfully: %s", excel_file_path)
             return JsonResponse({"message": "Files processed and sorted successfully."})
 
         except Exception as e:
+            logger.error("Error processing file %s: %s", file.name, str(e))
             return JsonResponse({"error": f"Error processing file {file.name}: {str(e)}"}, status=500)
-    
+
+    logger.error("Invalid request or no file uploaded")
     return JsonResponse({"error": "Please upload a file."}, status=400)
 
 def process_data(data, venue):

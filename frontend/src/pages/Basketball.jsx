@@ -77,7 +77,7 @@ const Basketball = () => {
                     <Form.Control type='file' size='lg' ref={fileInputRef} />
                 </Form.Group>
                 <button className='btn btn-primary' onClick={handleBasketballFile} disabled={loading}>
-                    {loading ? 'Loading...' : 'Set Net Heights'}
+                    {loading ? 'Loading...' : 'Create Game Sheets'}
                 </button>
             </div>
             {error && <p className="error-message">{error}</p>}  {/* Display error message */}
