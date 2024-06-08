@@ -40,7 +40,7 @@ def generate_game_sheets(request):
                     home_team = home_teams[counter]
                     away_team = away_teams[counter]
                     league = leagues[counter]
-                    venue = venues[counter].split()[-1]
+                    venue = venues[counter]
                     date = pd.to_datetime(dates[counter]).strftime('%m/%d')
                     time = times[counter]
 
