@@ -96,12 +96,14 @@ def generate_core_game_sheet(worksheet, home_team, away_team, venue, date, time,
     rows = [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]
     for row in rows:
         worksheet.set_row(row, 17)
+        
+    facility_name = venue.split('-')[1].strip()    
 
     worksheet.merge_range('B1:M1', "CORE - REGULAR SEASON GAME SCORE SHEET", title_format)
     worksheet.merge_range('B2:M2', f"Home Team: {home_team}", game_format)
     worksheet.merge_range('B19:M19', f"Away Team: {away_team}", game_format)
     worksheet.merge_range('A2:A7', f"Court: {venue}", vertical_format)
-    worksheet.merge_range('A10:A16', f"Facility: {venue}", vertical_format)
+    worksheet.merge_range('A10:A16', f"Facility: {facility_name}", vertical_format)
     worksheet.merge_range('A19:A24', f"Time: {time}", vertical_format)
     worksheet.merge_range('A27:A33', f"Date: {date}", vertical_format)
     worksheet.set_column('A:A', 9)
