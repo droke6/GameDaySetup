@@ -15,7 +15,8 @@ function Home() {
         <Navbar />
       </div>
       <div className="content">
-        <h1>PSA Game Sorter 2.0</h1>
+        <h1>PSA Game Sorter</h1>
+        <h4>Choose a sport.</h4>
         <div className="buttons">
           <button className="game-button" onClick={() => navigateTo("/basketball")}>Basketball</button>
           <button className="game-button" onClick={() => navigateTo("/volleyball")}>Volleyball</button>
