@@ -45,8 +45,9 @@ def generate_net_height_file(request):
                     df_location['Date'] = pd.to_datetime(df_location['Date']).dt.strftime('%m/%d/%Y')
                     df_location['Time'] = pd.to_datetime(df_location['Time'], errors='coerce').dt.strftime('%I:%M %p')
 
-                    df_location = df_location[['Date', 'Time', 'Court', 'Net Height', 'Ball Type']]
-                    
+                    df_location = df_location[['Date', 'Time', 'Venue', 'Net Height', 'Ball Type']]
+                    df_location = df_location.rename(columns={'Venue': 'Court'})
+
                     # Sort the DataFrame by Date, Court, and Time to ensure the correct order
                     df_location.sort_values(by=['Date', 'Court', 'Time'], inplace=True)
 
