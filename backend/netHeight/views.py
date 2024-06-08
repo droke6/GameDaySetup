@@ -45,9 +45,8 @@ def generate_net_height_file(request):
                     df_location['Date'] = pd.to_datetime(df_location['Date']).dt.strftime('%m/%d/%Y')
                     df_location['Time'] = pd.to_datetime(df_location['Time'], errors='coerce').dt.strftime('%I:%M %p')
 
-                    df_location = df_location[['Date', 'Time', 'Venue', 'Net Height', 'Ball Type']]
-                    df_location = df_location.rename(columns={'Venue': 'Court'})
-
+                    df_location = df_location[['Date', 'Time', 'Court', 'Net Height', 'Ball Type']]
+                    
                     # Sort the DataFrame by Date, Court, and Time to ensure the correct order
                     df_location.sort_values(by=['Date', 'Court', 'Time'], inplace=True)
 
@@ -58,15 +57,15 @@ def generate_net_height_file(request):
 
                     for index, row in df_location.iterrows():
                         if row['Court'] != prev_court or row['Date'] != prev_date:
-                            if prev_court is not None:
-                                rows_to_write.append({})
-                        if row['Net Height'] != prev_net_height or row['Court'] != prev_court or row['Date'] != prev_date:
+                            # Always add the first game of a new court or date
                             rows_to_write.append(row.to_dict())
                             prev_net_height = row['Net Height']
+                        elif row['Net Height'] != prev_net_height:
+                            rows_to_write.append(row.to_dict())
+                            prev_net_height = row['Net Height']
+
                         prev_court = row['Court']
                         prev_date = row['Date']
-                        # Ensure all rows are added
-                        rows_to_write.append(row.to_dict())
 
                     if rows_to_write:
                         final_df = pd.DataFrame(rows_to_write)
@@ -88,3 +87,4 @@ def generate_net_height_file(request):
         return response
 
     return HttpResponse(status=400)
+
