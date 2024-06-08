@@ -30,7 +30,7 @@ const Basketball = () => {
         try {
             await getCsrfToken();  // Fetch and set the CSRF token before making the POST request
 
-            const response = await axios.post('https://psa.gamedaysetup.org/api/', formData, {
+            const response = await axios.post('https://psa.gamedaysetup.org/api/basketball', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 },
