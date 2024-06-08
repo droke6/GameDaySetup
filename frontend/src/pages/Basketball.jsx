@@ -27,7 +27,7 @@ const Basketball = () => {
         setLoading(true);
 
         try {
-            const response = await axios.post('https//psa.gamedaysetup.org/api/basketball/', formData, {
+            const response = await axios.post('https://psa.gamedaysetup.org/api/basketball/', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 },
