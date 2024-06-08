@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import '../styles/Basketball.css';
 import '../styles/LoadingCircle.css';
 import '../styles/Popup.css';
+import { getCsrfToken } from '../utils/csrf';
 
 const Basketball = () => {
     const fileInputRef = useRef(null);
@@ -27,6 +28,8 @@ const Basketball = () => {
         setLoading(true);
 
         try {
+            await getCsrfToken();
+
             const response = await axios.post('https://psa.gamedaysetup.org/api/basketball/', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
