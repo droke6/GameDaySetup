@@ -8,7 +8,10 @@ from django.shortcuts import render
 from django.views import View
 from django.core.files.storage import FileSystemStorage
 import xlsxwriter
+from django.views.decorators.csrf import csrf_exempt
 
+
+@csrf_exempt
 def process_data(data, venue):
     data_dict = {
         "Date": data["Date"].to_list(),
