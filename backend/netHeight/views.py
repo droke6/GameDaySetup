@@ -48,6 +48,9 @@ def generate_net_height_file(request):
                     df_location = df_location[['Date', 'Time', 'Venue', 'Net Height', 'Ball Type']]
                     df_location = df_location.rename(columns={'Venue': 'Court'})
 
+                    # Sort the DataFrame by Date, Court, and Time to ensure the correct order
+                    df_location.sort_values(by=['Date', 'Court', 'Time'], inplace=True)
+
                     prev_net_height = None
                     prev_court = None
                     prev_date = None
