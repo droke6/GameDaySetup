@@ -15,6 +15,6 @@ urlpatterns = [
     path('api/net_height/', include('netHeight.urls')),
     path('api/game_sheets/', include('gameSheets.urls')),
     path('api/master_schedule/', include('masterSchedule.urls')),
-    path('api/basketball/', include('basketball.urls'))
+    # path('api/basketball/', include('basketball.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
