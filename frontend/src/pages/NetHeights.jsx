@@ -91,7 +91,7 @@ const NetHeights = () => {
         <div className="popup">
             <div className="popup-content">
                 <button className="close-button" onClick={handleClosePopup}>x</button>
-                <p>Net Heights Set. <a href="/game-sheets">Click here to Create Game Sheets</a></p>
+                <p>Net Heights File Created. <a href="/game-sheets">Click here to Create Game Sheets</a></p>
             </div>
         </div>
         )}
