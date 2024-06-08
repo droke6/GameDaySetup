@@ -18,12 +18,16 @@ def generate_comp_game_sheet(worksheet, home_team, away_team, venue, date, time,
     game_vertical_format.set_rotation(90)
     bg_color_format = writer.book.add_format({'bg_color': '#F2F2F2'})
     border_format = writer.book.add_format({'border': 1})
+    
+    facility_name = venue.split()[1]   
+    court = venue.split()[-1]
+
 
     worksheet.merge_range('O10:O23', 'COMPETITIVE LEAGUE SCORE SHEETS', comp_format)
     worksheet.merge_range('C1:G1', f'Home Team: {home_team}', title_format)
     worksheet.merge_range('J1:N1', f'Away Team: {away_team}', title_format)
-    worksheet.merge_range('A3:A8', f'Court: {venue}', vertical_format)
-    worksheet.merge_range('A11:A16', f'Facility: {venue}', vertical_format)
+    worksheet.merge_range('A3:A8', f'Court: {court}', vertical_format)
+    worksheet.merge_range('A11:A16', f'Facility: {facility_name}', vertical_format)
     worksheet.merge_range('A19:A24', f'Time: {time}', vertical_format)
     worksheet.merge_range('A27:A32', f'Date: {date}', vertical_format)
     worksheet.merge_range('B2:B9', 'Game 1', game_vertical_format)

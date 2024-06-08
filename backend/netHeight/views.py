@@ -37,7 +37,7 @@ def generate_net_height_file(request):
             for location in locations:
                 for sheet_name in sorted_file.sheet_names:
                     df = sorted_file.parse(sheet_name)
-                    df_location = df[df['Venue'].str.contains(location, case=False, na=False, regex=True)]
+                    df_location = df[df['Court'].str.contains(location, case=False, na=False, regex=True)]
 
                     df_location['Net Height'] = df_location['League'].apply(determine_net_height)
                     df_location['Ball Type'] = df_location['League'].apply(determine_ball_type)
@@ -45,9 +45,8 @@ def generate_net_height_file(request):
                     df_location['Date'] = pd.to_datetime(df_location['Date']).dt.strftime('%m/%d/%Y')
                     df_location['Time'] = pd.to_datetime(df_location['Time'], errors='coerce').dt.strftime('%I:%M %p')
 
-                    df_location = df_location[['Date', 'Time', 'Venue', 'Net Height', 'Ball Type']]
-                    df_location = df_location.rename(columns={'Venue': 'Court'})
-
+                    df_location = df_location[['Date', 'Time', 'Court', 'Net Height', 'Ball Type']]
+                    
                     # Sort the DataFrame by Date, Court, and Time to ensure the correct order
                     df_location.sort_values(by=['Date', 'Court', 'Time'], inplace=True)
 
@@ -62,9 +61,9 @@ def generate_net_height_file(request):
                             rows_to_write.append(row.to_dict())
                             prev_net_height = row['Net Height']
                         elif row['Net Height'] != prev_net_height:
+                            rows_to_write.append({})
                             rows_to_write.append(row.to_dict())
                             prev_net_height = row['Net Height']
-
                         prev_court = row['Court']
                         prev_date = row['Date']
 
