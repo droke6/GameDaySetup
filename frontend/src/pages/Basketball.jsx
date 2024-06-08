@@ -8,7 +8,7 @@ import Dropdown from '../components/Dropdown';
 import '../styles/LoadingCircle.css';
 import '../styles/Popup.css';  // Import the CSS for the popup
 
-const NetHeights = () => {
+const Basketball = () => {
     const fileInputRef = useRef(null);
     const [showLogin, setShowLogin] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -97,4 +97,4 @@ const NetHeights = () => {
     );
 };
 
-export default NetHeights;
+export default Basketball;

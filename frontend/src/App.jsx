@@ -40,9 +40,9 @@ function App() {
         } />
 
         <Route path='/basketball' element={
-          // <ProtectedRoute>
+          
             <Basketball />
-          // </ProtectedRoute>
+
         }/>
         <Route path ='/master-schedule' element={
           <ProtectedRoute>
