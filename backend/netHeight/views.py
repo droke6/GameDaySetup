@@ -87,4 +87,3 @@ def generate_net_height_file(request):
         return response
 
     return HttpResponse(status=400)
-
