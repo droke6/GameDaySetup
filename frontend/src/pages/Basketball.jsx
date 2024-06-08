@@ -5,6 +5,7 @@ import '../styles/Basketball.css';
 import axios from 'axios';
 import Navbar from "../components/Navbar";
 import '../styles/LoadingCircle.css';
+import '../styles/Popup.css' 
 
 const Basketball = () => {
     const fileInputRef = useRef(null);
@@ -69,6 +70,10 @@ const Basketball = () => {
         }
     };
 
+    const handleClosePopup = () => {
+        setShowPopup(false);
+    };   
+
     return (
         <>
             <div className="top">
@@ -101,6 +106,7 @@ const Basketball = () => {
             {showPopup && (
                 <div className="popup">
                     <div className="popup-content">
+                        <button className="close-button" onClick={handleClosePopup}>x</button>
                         <p>Basketball Games Sheets Created. <a href="/basketball">Click here to enter a new day.</a></p>
                     </div>
                 </div>

@@ -6,6 +6,8 @@ import axios from 'axios';
 import Navbar from "../components/Navbar";
 import Dropdown from '../components/Dropdown';
 import '../styles/LoadingCircle.css'
+import '../styles/Popup.css' 
+import '../styles/LoadingCircle.css';
 
 const GameSheets = () => {
     const fileInputRef = useRef(null);
@@ -50,6 +52,10 @@ const GameSheets = () => {
           }
     };
 
+    const handleClosePopup = () => {
+        setShowPopup(false);
+    };
+
     return (
         <>
         <div className="top">
@@ -79,6 +85,7 @@ const GameSheets = () => {
         {showPopup && (
             <div className="popup">
             <div className="popup-content">
+                <button className="close-button" onClick={handleClosePopup}>x</button>
                 <p>Games Sheets Created. <a href="/">Click here to return to Home page.</a></p>
             </div>
             </div>

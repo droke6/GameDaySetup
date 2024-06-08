@@ -5,6 +5,7 @@ import '../styles/Uploads.css';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import Dropdown from '../components/Dropdown';
+import '../styles/Popup.css' 
 
 const MasterSchedule = () => {
   const fileInputRef = useRef(null);
@@ -52,6 +53,10 @@ const MasterSchedule = () => {
       setLoading(false);
     }
   };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+};
 
   return (
     <>
@@ -101,6 +106,7 @@ const MasterSchedule = () => {
       {showPopup && (
         <div className="popup">
           <div className="popup-content">
+          <button className="close-button" onClick={handleClosePopup}>x</button>
             <p>Games Sorted. <a href="/net-heights">Click here to Set Net Heights</a></p>
           </div>
         </div>
