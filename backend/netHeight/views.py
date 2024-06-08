@@ -61,8 +61,7 @@ def generate_net_height_file(request):
                             if row['Court'] != prev_court or row['Date'] != prev_date:
                                 rows_to_write.append(row.to_dict())
                                 prev_net_height = row['Net Height']
-                                if prev_court is not None:
-                                    rows_to_write.append({})
+                                
                             elif row['Net Height'] != prev_net_height:
                                 rows_to_write.append({})
                                 rows_to_write.append(row.to_dict())
