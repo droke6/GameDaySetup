@@ -1,0 +1,29 @@
+.top {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex: 2;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; /* Center items vertically */
+    gap: 20px; /* Adding some space between items for clarity */
+    height: 100px; /* Adjust height as necessary */
+}
+
+

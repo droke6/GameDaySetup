@@ -1,0 +1,24 @@
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Ensures all items inside .top are aligned to the center vertically */
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex: 2;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
