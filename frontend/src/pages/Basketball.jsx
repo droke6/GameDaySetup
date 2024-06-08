@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar";
 import '../styles/Basketball.css';
 import '../styles/LoadingCircle.css';
 import '../styles/Popup.css';
-import { getCsrfToken } from '../utils/csrf';
+import { getCsrfToken } from '../csrf';
 
 const Basketball = () => {
     const fileInputRef = useRef(null);
