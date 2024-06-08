@@ -10,6 +10,8 @@ from django.core.files.storage import FileSystemStorage
 import xlsxwriter
 from django.views.decorators.csrf import csrf_exempt
 
+
+@csrf_exempt
 def process_data(data, venue):
     data_dict = {
         "Date": data["Date"].to_list(),
@@ -30,7 +32,6 @@ def process_data(data, venue):
 
     return final_sort
 
-@csrf_exempt
 class BasketballView(View):
     def post(self, request):
         if 'file' not in request.FILES:
