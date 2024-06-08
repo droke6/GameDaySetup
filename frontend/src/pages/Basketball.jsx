@@ -1,54 +1,63 @@
 import { useRef, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
-import '../styles/Uploads.css';
 import axios from 'axios';
 import Navbar from "../components/Navbar";
-import Dropdown from '../components/Dropdown';
+import '../styles/Basketball.css';
 import '../styles/LoadingCircle.css';
-import '../styles/Popup.css';  // Import the CSS for the popup
+import '../styles/Popup.css';
 
 const Basketball = () => {
     const fileInputRef = useRef(null);
-    const [showLogin, setShowLogin] = useState(false);
     const [loading, setLoading] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
-    const [error, setError] = useState(null);  // Add error state
+    const [popupMessage, setPopupMessage] = useState('');
 
-    const toggleForm = () => {
-        setShowLogin(!showLogin);
-    };
-
-    const handleGenerateNetHeightFile = async () => {
+    const handleGenerateGameSheets = async () => {
         const fileInput = fileInputRef.current;
-        if (!fileInput || !fileInput.files[0]) {
+
+        if (!fileInput || fileInput.files.length === 0) {
             console.error('No file selected');
-            setError('No file selected');
             return;
         }
+
         const formData = new FormData();
-        formData.append('files', fileInput.files[0]);  // Ensure the key is 'files' as expected by the backend
+        formData.append('files', fileInput.files[0]);
 
         setLoading(true);
-        setError(null);  // Reset error state
 
         try {
             const response = await axios.post('https://psa.gamedaysetup.org/api/basketball/', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
-                }
+                },
+                responseType: 'blob'
             });
+
             if (response.status === 200) {
-                // Log success message
-                console.log('Basketball files processed successfully.');
-                setShowPopup(true); 
+                console.log('Basketball Sheets generated successfully.');
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                const contentDisposition = response.headers['content-disposition'];
+                let fileName = 'sorted_basketball_games.xlsx';
+                if (contentDisposition) {
+                    const fileNameMatch = contentDisposition.match(/filename="?(.+)"?/);
+                    if (fileNameMatch && fileNameMatch.length === 2) fileName = fileNameMatch[1];
+                }
+                link.setAttribute('download', fileName);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                setPopupMessage('Basketball Games Sheets Created. Click here to enter a new day.');
+                setShowPopup(true);
             } else {
-                console.error('Failed to process basketball files');
-                setError('Failed to process basketball files');
+                console.error('Failed to generate game sheets Excel, status:', response.status);
             }
         } catch (error) {
-            console.error('Error processing basketball files:', error);
-            setError('Error processing basketball files');
+            console.error('Error occurred while generating sheets:', error);
+            setPopupMessage('Failed to generate game sheets. Please try again.');
+            setShowPopup(true);
         } finally {
             setLoading(false);
         }
@@ -60,39 +69,41 @@ const Basketball = () => {
 
     return (
         <>
-        <div className="top">
-            <Dropdown className="dropdown" />
-            <Navbar className="navbar" toggleForm={toggleForm} showLogin={showLogin} />
-        </div>
-        <h1>Net Heights</h1>
-        <Card className='container'>
-            <Card.Text>
-            <ul>
-            <h3>Upload Sorted Games File</h3>
-            </ul>
-            </Card.Text>
-            <hr />
-            <div className='button-container'>
-                <Form.Group>
-                    <Form.Control type='file' size='lg' ref={fileInputRef} />
-                </Form.Group>
-                <button className='btn btn-primary' onClick={handleGenerateNetHeightFile} disabled={loading}>
-                    {loading ? 'Loading...' : 'Set Net Heights'}
-                </button>
+            <div className="top">
+                <Navbar className="navbar" />
             </div>
-            {error && <p className="error-message">{error}</p>}  {/* Display error message */}
-        </Card>
-        <br></br>
-        <a href="/">Home</a>
-        {loading && <div className="loading-circle"></div>}
-        {showPopup && (
-        <div className="popup">
-            <div className="popup-content">
-                <button className="close-button" onClick={handleClosePopup}>x</button>
-                <p>Net Heights Set. <a href="/game-sheets">Click here to Create Game Sheets</a></p>
-            </div>
-        </div>
-        )}
+            <h1>Basketball Sheets</h1>
+            <Card className='container'>
+                <Card.Text>
+                    <ul>
+                        <h3>Upload a file from Assigner</h3>
+                    </ul>
+                </Card.Text>
+                <hr />
+                <div className='button-container'>
+                    <div className='inputs'>
+                        <Form.Group>
+                            <Form.Control type='file' size='lg' ref={fileInputRef} />
+                        </Form.Group>
+                    </div>
+                    <div className='button-wrapper'>
+                        <button className='btn btn-primary' onClick={handleGenerateGameSheets} disabled={loading}>
+                            {loading ? 'Loading...' : 'Create Sheets'}
+                        </button>
+                    </div>
+                </div>
+            </Card>
+            <br />
+            <a href="/">Home</a>
+            {loading && <div className="loading-circle"></div>}
+            {showPopup && (
+                <div className="popup">
+                    <div className="popup-content">
+                        <button className="close-button" onClick={handleClosePopup}>x</button>
+                        <p>{popupMessage} <a href="/basketball">Click here to enter a new day.</a></p>
+                    </div>
+                </div>
+            )}
         </>
     );
 };
