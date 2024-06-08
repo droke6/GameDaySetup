@@ -1,16 +1,17 @@
 import { useRef, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
-import '../styles/Basketball.css';
 import axios from 'axios';
 import Navbar from "../components/Navbar";
+import '../styles/Basketball.css';
 import '../styles/LoadingCircle.css';
-import '../styles/Popup.css' 
+import '../styles/Popup.css';
 
 const Basketball = () => {
     const fileInputRef = useRef(null);
     const [loading, setLoading] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
+    const [popupMessage, setPopupMessage] = useState('');
 
     const handleGenerateGameSheets = async () => {
         const fileInput = fileInputRef.current;
@@ -26,12 +27,13 @@ const Basketball = () => {
         setLoading(true);
 
         try {
-            const response = await axios.post('https://psa.gamedaysetup.org/api/basketball/', formData, {
+            const response = await axios.post('https//psa.gamedaysetup.org/api/basketball/', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 },
                 responseType: 'blob'
             });
+
             if (response.status === 200) {
                 console.log('Basketball Sheets generated successfully.');
                 const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -41,30 +43,21 @@ const Basketball = () => {
                 let fileName = 'sorted_basketball_games.xlsx';
                 if (contentDisposition) {
                     const fileNameMatch = contentDisposition.match(/filename="?(.+)"?/);
-                    if (fileNameMatch.length === 2) fileName = fileNameMatch[1];
+                    if (fileNameMatch && fileNameMatch.length === 2) fileName = fileNameMatch[1];
                 }
                 link.setAttribute('download', fileName);
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
+                setPopupMessage('Basketball Games Sheets Created. Click here to enter a new day.');
                 setShowPopup(true);
             } else {
                 console.error('Failed to generate game sheets Excel, status:', response.status);
             }
         } catch (error) {
-            if (error.response) {
-                // The request was made and the server responded with a status code that falls out of the range of 2xx
-                console.error('Error response data:', error.response.data);
-                console.error('Error response status:', error.response.status);
-                console.error('Error response headers:', error.response.headers);
-            } else if (error.request) {
-                // The request was made but no response was received
-                console.error('Error request:', error.request);
-            } else {
-                // Something happened in setting up the request that triggered an Error
-                console.error('Error message:', error.message);
-            }
-            console.error('Error config:', error.config);
+            console.error('Error occurred while generating sheets:', error);
+            setPopupMessage('Failed to generate game sheets. Please try again.');
+            setShowPopup(true);
         } finally {
             setLoading(false);
         }
@@ -72,7 +65,7 @@ const Basketball = () => {
 
     const handleClosePopup = () => {
         setShowPopup(false);
-    };   
+    };
 
     return (
         <>
@@ -107,7 +100,7 @@ const Basketball = () => {
                 <div className="popup">
                     <div className="popup-content">
                         <button className="close-button" onClick={handleClosePopup}>x</button>
-                        <p>Basketball Games Sheets Created. <a href="/basketball">Click here to enter a new day.</a></p>
+                        <p>{popupMessage} <a href="/basketball">Click here to enter a new day.</a></p>
                     </div>
                 </div>
             )}
