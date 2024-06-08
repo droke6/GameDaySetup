@@ -19,7 +19,7 @@ def generate_comp_game_sheet(worksheet, home_team, away_team, venue, date, time,
     bg_color_format = writer.book.add_format({'bg_color': '#F2F2F2'})
     border_format = writer.book.add_format({'border': 1})
     
-    facility_name = venue.split()[1]   
+    facility_name = venue.split()[-2]   
     court = venue.split()[-1]
 
 

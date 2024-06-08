@@ -97,7 +97,7 @@ def generate_core_game_sheet(worksheet, home_team, away_team, venue, date, time,
     for row in rows:
         worksheet.set_row(row, 17)
         
-    facility_name = venue.split('-')[1]   
+    facility_name = venue.split()[-2]   
     court = venue.split()[-1]
 
     worksheet.merge_range('B1:M1', "CORE - REGULAR SEASON GAME SCORE SHEET", title_format)
