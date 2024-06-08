@@ -5,8 +5,7 @@ import '../styles/Uploads.css';
 import axios from 'axios';
 import Navbar from "../components/Navbar";
 import Dropdown from '../components/Dropdown';
-import '../styles/LoadingCircle.css';
-import '../styles/Popup.css';  // Import the CSS for the popup
+import '../styles/LoadingCircle.css';  // Import the CSS for the popup
 
 const NetHeights = () => {
     const fileInputRef = useRef(null);
