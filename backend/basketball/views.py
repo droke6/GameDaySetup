@@ -8,7 +8,6 @@ from django.shortcuts import render
 from django.views import View
 from django.core.files.storage import FileSystemStorage
 import xlsxwriter
-from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 
 def process_data(data, venue):
@@ -31,7 +30,7 @@ def process_data(data, venue):
 
     return final_sort
 
-@method_decorator(csrf_exempt, name='dispatch')
+@csrf_exempt
 class BasketballView(View):
     def post(self, request):
         if 'file' not in request.FILES:
