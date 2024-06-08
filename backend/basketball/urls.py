@@ -1,8 +1,8 @@
 # basketball/urls.py
 
 from django.urls import path
-from .views import BasketballView
+from .views import basketball
 
 urlpatterns = [
-    path('', BasketballView.as_view(), name='basketball_upload'),
+    path('', basketball, name='basketball_upload'),
 ]
