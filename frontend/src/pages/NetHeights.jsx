@@ -5,14 +5,13 @@ import '../styles/Uploads.css';
 import axios from 'axios';
 import Navbar from "../components/Navbar";
 import Dropdown from '../components/Dropdown';
-import '../styles/LoadingCircle.css'
+import '../styles/LoadingCircle.css';
 
 const NetHeights = () => {
     const fileInputRef = useRef(null);
     const [showLogin, setShowLogin] = useState(false);
     const [loading, setLoading] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
-
 
     const toggleForm = () => {
         setShowLogin(!showLogin);
@@ -57,6 +56,10 @@ const NetHeights = () => {
           }
     };
 
+    const handleClosePopup = () => {
+        setShowPopup(false);
+    };
+
     return (
         <>
         <div className="top">
@@ -86,6 +89,7 @@ const NetHeights = () => {
         {showPopup && (
         <div className="popup">
             <div className="popup-content">
+                <button className="close-button" onClick={handleClosePopup}>x</button>
                 <p>Net Heights Set. <a href="/game-sheets">Click here to Create Game Sheets</a></p>
             </div>
         </div>
