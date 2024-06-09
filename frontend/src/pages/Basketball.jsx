@@ -1,9 +1,9 @@
-// Basketball.jsx
-
 import { useState, useRef } from 'react';
 import axios from 'axios';
 import { Form, Card } from 'react-bootstrap';
 import Navbar from '../components/Navbar';
+import '../styles/LoadingCircle.css'
+import '../styles/Popup.css'
 
 const Basketball = () => {
     const fileInputRef = useRef(null);
