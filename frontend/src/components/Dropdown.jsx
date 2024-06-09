@@ -12,7 +12,7 @@ const Dropdown = () => {
     <Menu>
         <SubMenu label="Select an Option" style={{color:"#040C18", fontSize:"16px"}}>
             <MenuItem style={{color:"#040C18", fontSize:"16px"}}>
-                <div onClick={() => navigateTo("/sort")}> Sort Master Schedule </div>
+                <div onClick={() => navigateTo("/master-schedule")}> Sort Master Schedule </div>
             </MenuItem>
             <MenuItem style={{color:"#040C18", fontSize:"16px"}}>
                 <div onClick={() => navigateTo("/net-heights")}> Set Net Height </div>

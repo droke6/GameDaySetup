@@ -1,0 +1,47 @@
+/* General Styles */
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap; /* Prevent items from wrapping */
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 1; /* Allow it to grow to take available space */
+}
+
+.sign-out-button {
+    display: flex;
+    align-items: center;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+@media (max-width: 550px) {
+    .top {
+        flex-direction: row; /* Ensure direction is row */
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap; /* Prevent wrapping */
+    }
+
+    .dropdown {
+        flex: 1; /* Allow it to take available space */
+    }
+
+    .sign-out-button {
+        white-space: nowrap;
+    }
+
+    .container {
+        width: 100%; /* Adjust container width for small screens */
+    }
+
+    .button-container {
+        flex-direction: column;
+        gap: 10px;
+        height: auto;
+    }
+}

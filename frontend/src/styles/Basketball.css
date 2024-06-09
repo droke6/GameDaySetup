@@ -43,6 +43,10 @@
         width: 100%; /* Make it full width on small screens */
     }
 
+    .container {
+        width: 250px;
+    }
+
     .button-container {
         flex-direction: column;
         gap: 10px; /* Reduce the gap for smaller screens */

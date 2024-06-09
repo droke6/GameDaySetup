@@ -29,9 +29,9 @@ function App() {
       <Routes>
         
         <Route path ='/' element={
-
+          <ProtectedRoute>
             <Home />
- 
+          </ProtectedRoute>
         } />
         <Route path ='/volleyball' element={
           <ProtectedRoute>

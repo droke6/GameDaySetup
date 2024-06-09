@@ -3,20 +3,18 @@ import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import '../styles/Uploads.css';
 import axios from 'axios';
-import Navbar from "../components/Navbar";
 import Dropdown from '../components/Dropdown';
 import '../styles/LoadingCircle.css';
 import '../styles/Popup.css';
+import '../styles/NetHeights.css'
+import { useNavigate } from 'react-router-dom';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants"
 
 const NetHeights = () => {
+    const navigate = useNavigate();
     const fileInputRef = useRef(null);
-    const [showLogin, setShowLogin] = useState(false);
     const [loading, setLoading] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
-
-    const toggleForm = () => {
-        setShowLogin(!showLogin);
-    };
 
     const handleGenerateNetHeightFile = async () => {
         const fileInput = fileInputRef.current;
@@ -61,11 +59,21 @@ const NetHeights = () => {
         setShowPopup(false);
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem(ACCESS_TOKEN);
+        localStorage.removeItem(REFRESH_TOKEN);
+        navigate('/login');
+      };
+
     return (
         <>
         <div className="top">
+        <div className="top">
+            <button className='sign-out-button' type="button" onClick={handleLogout} style={{ whiteSpace: 'nowrap' }} >
+                Sign Out
+            </button>
             <Dropdown className="dropdown" />
-            <Navbar className="navbar" toggleForm={toggleForm} showLogin={showLogin} />
+        </div>
         </div>
         <h1>Net Heights</h1>
         <Card className='container'>

@@ -3,11 +3,13 @@ import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import '../styles/Uploads.css';
 import axios from 'axios';
-import Navbar from '../components/Navbar';
 import Dropdown from '../components/Dropdown';
 import '../styles/Popup.css' 
+import { useNavigate } from 'react-router-dom';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants"
 
 const MasterSchedule = () => {
+  const navigate = useNavigate();
   const fileInputRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
@@ -58,11 +60,21 @@ const MasterSchedule = () => {
     setShowPopup(false);
 };
 
+const handleLogout = () => {
+  localStorage.removeItem(ACCESS_TOKEN);
+  localStorage.removeItem(REFRESH_TOKEN);
+  navigate('/login');
+};
+
   return (
     <>
       <div className="top">
-        <Dropdown className="dropdown" />
-        <Navbar className="navbar" />
+      <div className="top">
+          <button className='sign-out-button' type="button" onClick={handleLogout} style={{ whiteSpace: 'nowrap' }} >
+            Sign Out
+          </button>
+          <Dropdown className="dropdown" />
+        </div>
       </div>
       <h1>Master Schedule Sorter</h1>
       <Card className="container">

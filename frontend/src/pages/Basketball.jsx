@@ -4,6 +4,7 @@ import { Form, Card } from 'react-bootstrap';
 import Navbar from '../components/Navbar';
 import '../styles/LoadingCircle.css';
 import '../styles/Popup.css';
+import '../styles/Basketball.css'
 
 const Basketball = () => {
     const fileInputRef = useRef(null);

@@ -32,7 +32,7 @@
   text-decoration: none;
   display: inline-block;
   font-size: 40px;
-  margin: 50px;
+  margin: 40px;
   cursor: pointer;
   border-radius: 10px;
   transition: all 0.3s ease;
@@ -61,6 +61,5 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
   }
 }
