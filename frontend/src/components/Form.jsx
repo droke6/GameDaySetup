@@ -23,6 +23,7 @@ function Form({route, method}) {
             if (method === 'login') {
                 localStorage.setItem(ACCESS_TOKEN, res.data.access)
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh)
+                document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0');
                 navigate('/')
             } else {
                 navigate('/login')
