@@ -25,7 +25,7 @@ const Basketball = () => {
         formData.append('file', file);
 
         try {
-            const response = await axios.post('/basketball/sort/', formData, {
+            const response = await axios.post('/api/basketball/sort/', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
