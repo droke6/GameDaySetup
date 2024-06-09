@@ -4,6 +4,10 @@
   align-items: center; /* Ensures all items inside .top are aligned to the center vertically */
 }
 
+h1, h4 {
+  color: #1a3433;
+}
+
 .dropdown {
   display: flex;
   flex-direction: row;
@@ -12,10 +16,10 @@
   flex: 2;
 }
 
-.navbar {
+/* .navbar {
   display: flex;
   align-items: center;
-}
+} */
 
 .buttons {
   display: flex;
@@ -24,7 +28,7 @@
 }
 
 .game-button {
-  background-color: #4CAF50;
+  background-color: #456564;
   border: none;
   color: white;
   padding: 20px 40px;
