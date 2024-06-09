@@ -69,13 +69,12 @@ const handleLogout = () => {
   return (
     <>
       <div className="top">
-      <div className="top">
-          <button className='sign-out-button' type="button" onClick={handleLogout} style={{ whiteSpace: 'nowrap' }} >
-            Sign Out
-          </button>
-          <Dropdown className="dropdown" />
-        </div>
+        <Dropdown className="dropdown" />
+        <button className='sign-out-button' type="button" onClick={handleLogout} style={{ whiteSpace: 'nowrap' }} >
+          Sign Out
+        </button>
       </div>
+      <div>
       <h1>Master Schedule Sorter</h1>
       <Card className="container">
         <Card.Text>
@@ -123,6 +122,7 @@ const handleLogout = () => {
           </div>
         </div>
       )}
+      </div>
     </>
   );
 };

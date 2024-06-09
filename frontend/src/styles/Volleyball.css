@@ -1,24 +1,29 @@
+/* Volleyball.css */
+
 .top {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Ensures all items inside .top are aligned to the center vertically */
-}
-
-.dropdown {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    flex: 2;
-}
-
-.navbar {
-    display: flex;
-    align-items: center;
-}
-
-.buttons {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
+    width: 100%;
   }
+  
+  .sign-out-button {
+    white-space: nowrap;
+  }
+  
+  @media (max-width: 550px) {
+    .top {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    .dropdown-items {
+      flex: 1;
+    }
+  
+    .sign-out-button {
+      white-space: nowrap;
+    }
+  }
+  

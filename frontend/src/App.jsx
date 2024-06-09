@@ -34,9 +34,9 @@ function App() {
           </ProtectedRoute>
         } />
         <Route path ='/volleyball' element={
-          <ProtectedRoute>
+
             <Volleyball />
-          </ProtectedRoute>
+
         } />
 
         <Route path='/basketball' element={

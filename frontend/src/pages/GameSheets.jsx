@@ -68,10 +68,10 @@ const GameSheets = () => {
     return (
         <>
         <div className="top">
+            <Dropdown className="dropdown" />
             <button className='sign-out-button' type="button" onClick={handleLogout} style={{ whiteSpace: 'nowrap' }} >
                 Sign Out
             </button>
-            <Dropdown className="dropdown" />
         </div>
         <h1>Game Sheets</h1>
         <Card className='container'>

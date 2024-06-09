@@ -69,10 +69,10 @@ const NetHeights = () => {
         <>
         <div className="top">
         <div className="top">
+            <Dropdown className="dropdown" />
             <button className='sign-out-button' type="button" onClick={handleLogout} style={{ whiteSpace: 'nowrap' }} >
                 Sign Out
             </button>
-            <Dropdown className="dropdown" />
         </div>
         </div>
         <h1>Net Heights</h1>
