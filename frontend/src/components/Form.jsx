@@ -11,7 +11,7 @@ function Form({route, method}) {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
-    const name = method === 'login' ? "Get Started" : "Register"
+    const name = method === 'login' ? "Login" : "Register"
     // const name2 =  method === "login" ? "Create an Account" : "Sign Into Account"
 
     const handleSubmit = async (e) => {
@@ -46,7 +46,7 @@ function Form({route, method}) {
 
   return (
    <form onSubmit={handleSubmit} className="form-container">
-        <h2>{name}</h2>
+        <h2>Get Started</h2>
         <input 
             className="form-input"
             type="text"
