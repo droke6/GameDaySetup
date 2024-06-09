@@ -1,12 +1,9 @@
-import { useRef, useState } from 'react';
-import Form from 'react-bootstrap/Form';
-import Card from 'react-bootstrap/Card';
+// Basketball.jsx
+
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
-import Navbar from "../components/Navbar";
-import '../styles/Basketball.css';
-import '../styles/LoadingCircle.css';
-import '../styles/Popup.css';
-import { getCsrfToken } from '../csrf';  // Adjust the import path as necessary
+import { Form, Card } from 'react-bootstrap';
+import Navbar from '../components/Navbar';
 
 const Basketball = () => {
     const fileInputRef = useRef(null);
@@ -16,53 +13,39 @@ const Basketball = () => {
 
     const handleGenerateGameSheets = async () => {
         const fileInput = fileInputRef.current;
-
-        if (!fileInput || fileInput.files.length === 0) {
-            console.error('No file selected');
+        if (fileInput.files.length === 0) {
+            setPopupMessage('No file selected. Please select a file.');
+            setShowPopup(true);
             return;
         }
 
-        const formData = new FormData();
-        formData.append('file', fileInput.files[0]);  // Ensure the key is 'file'
-
         setLoading(true);
+        const file = fileInput.files[0];
+        const formData = new FormData();
+        formData.append('file', file);
 
         try {
-            await getCsrfToken();  // Fetch and set the CSRF token before making the POST request
-
-            const response = await axios.post('https://psa.gamedaysetup.org/api/basketball/basketball', formData, {
+            const response = await axios.post('/api/basketball/', formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data',
                 },
-                responseType: 'blob'
             });
 
             if (response.status === 200) {
-                console.log('Basketball Sheets generated successfully.');
-                const url = window.URL.createObjectURL(new Blob([response.data]));
-                const link = document.createElement('a');
-                link.href = url;
-                const contentDisposition = response.headers['content-disposition'];
-                let fileName = 'sorted_basketball_games.xlsx';
-                if (contentDisposition) {
-                    const fileNameMatch = contentDisposition.match(/filename="?(.+)"?/);
-                    if (fileNameMatch && fileNameMatch.length === 2) fileName = fileNameMatch[1];
-                }
-                link.setAttribute('download', fileName);
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                setPopupMessage('Basketball Games Sheets Created. Click here to enter a new day.');
-                setShowPopup(true);
+                setPopupMessage('Game sheets created successfully. You can download them from your Downloads folder.');
             } else {
-                console.error('Failed to generate game sheets Excel, status:', response.status);
+                setPopupMessage(`Failed to create game sheets. Status code: ${response.status}`);
             }
         } catch (error) {
+            if (error.response) {
+                setPopupMessage(`Error: ${error.response.data.error || 'Failed to generate game sheets.'}`);
+            } else {
+                setPopupMessage('Failed to generate game sheets. Please try again.');
+            }
             console.error('Error occurred while generating sheets:', error);
-            setPopupMessage('Failed to generate game sheets. Please try again.');
-            setShowPopup(true);
         } finally {
             setLoading(false);
+            setShowPopup(true);
         }
     };
 
