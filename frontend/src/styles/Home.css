@@ -1,50 +1,65 @@
 .top {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center; /* Ensures all items inside .top are aligned to the center vertically */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; /* Ensures all items inside .top are aligned to the center vertically */
 }
 
 .dropdown {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    flex: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex: 2;
 }
 
 .navbar {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .buttons {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.game-button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 20px 40px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 40px;
+  margin: 50px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.game-button:hover {
+  background-color: #45a049;
+  box-shadow: 0 6px 8px rgba(0,0,0,0.1);
+}
+
+.game-button:active {
+  transform: scale(0.98);
+}
+
+@media screen and (max-width: 700px) {
+  .buttons{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .buttons{
     display: flex;
-    justify-content: center;
-    margin: 20px 0;
+    flex-direction: column;
+    align-items: center;
   }
-  
-  .game-button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 20px 40px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 40px;
-    margin: 50px;
-    cursor: pointer;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  }
-  
-  .game-button:hover {
-    background-color: #45a049;
-    box-shadow: 0 6px 8px rgba(0,0,0,0.1);
-  }
-  
-  .game-button:active {
-    transform: scale(0.98);
-  }
-  
+}
