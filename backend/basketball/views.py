@@ -1,5 +1,3 @@
-# views.py
-
 import pandas as pd
 import xlsxwriter
 from django.http import HttpResponse
