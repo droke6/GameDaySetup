@@ -58,6 +58,9 @@ def generate_net_height_file(request):
 
                     for index, row in df_location.iterrows():
                         if row['Court'] != prev_court or row['Date'] != prev_date:
+                            if prev_court is not None:
+                                # Insert an empty row before changing the venue
+                                rows_to_write.append({col: '' for col in df_location.columns})
                             # Always add the first game of a new court or date
                             rows_to_write.append(row.to_dict())
                             prev_net_height = row['Net Height']
