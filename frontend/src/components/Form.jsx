@@ -64,9 +64,9 @@ function Form({route, method}) {
         {loading ? 'Signing In...' : [name]}
         </button>
 
-        <button className="form-button" onClick={Register}> 
+        {/* <button className="form-button" onClick={Register}> 
             {name2}
-        </button>
+        </button> */}
    </form>
   )
 }

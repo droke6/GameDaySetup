@@ -9,7 +9,7 @@ import NetHeights from './pages/NetHeights.jsx'
 import GameSheets from './pages/GameSheets.jsx'
 import Volleyball from './pages/Volleyball.jsx'
 import Basketball from './pages/Basketball.jsx'
-// import ProtectedRoute from './components/ProtectedRoutes.jsx'
+import ProtectedRoute from './components/ProtectedRoutes.jsx'
 
 function Logout() {
   localStorage.clear()
@@ -29,35 +29,35 @@ function App() {
       <Routes>
         
         <Route path ='/' element={
-
+          <ProtectedRoute>
             <Home />
-
+          </ProtectedRoute>
         } />
         <Route path ='/volleyball' element={
-
+          <ProtectedRoute>
             <Volleyball />
-
+          </ProtectedRoute>
         } />
 
         <Route path='/basketball' element={
-
+          <ProtectedRoute>
             <Basketball />
-
+          </ProtectedRoute>
         }/>
         <Route path ='/master-schedule' element={
-
+          <ProtectedRoute>
             <MasterSchedule />
-
+          </ProtectedRoute> 
         } />
         <Route path ='/net-heights' element={
-
+          <ProtectedRoute>
             <NetHeights />
-
+          </ProtectedRoute> 
         } />
         <Route path ='/game-sheets' element={
-
+          <ProtectedRoute>
             <GameSheets />
-
+          </ProtectedRoute> 
         } />
 
         <Route path='/login' element={<Login />} />
