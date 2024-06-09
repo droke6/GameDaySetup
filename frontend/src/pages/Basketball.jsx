@@ -1,6 +1,6 @@
 // Basketball.jsx
 
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import axios from 'axios';
 import { Form, Card } from 'react-bootstrap';
 import Navbar from '../components/Navbar';
