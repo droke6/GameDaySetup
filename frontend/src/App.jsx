@@ -50,9 +50,9 @@ function App() {
           </ProtectedRoute> 
         } />
         <Route path ='/net-heights' element={
-          <ProtectedRoute>
+
             <NetHeights />
-          </ProtectedRoute> 
+
         } />
         <Route path ='/game-sheets' element={
           <ProtectedRoute>

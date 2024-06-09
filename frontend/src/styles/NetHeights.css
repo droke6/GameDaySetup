@@ -16,7 +16,7 @@
 .sign-out-button {
     display: flex;
     align-items: center;
-    white-space: nowrap; /* Prevent text wrapping */
+    white-space: nowrap;
 }
 
 @media (max-width: 550px) {
