@@ -12,7 +12,7 @@ function Form({route, method}) {
     const navigate = useNavigate()
 
     const name = method === 'login' ? "Login" : "Register"
-    const name2 =  method === "login" ? "Create an Account" : "Sign Into Account"
+    // const name2 =  method === "login" ? "Create an Account" : "Sign Into Account"
 
     const handleSubmit = async (e) => {
         setLoading(true)
@@ -34,14 +34,14 @@ function Form({route, method}) {
         }
     }
 
-    const Register = () => {
-        setLoading(true)
-        if (method === 'login') {
-            navigate('/register')
-        } else {
-            navigate('/login')
-        }
-    }
+    // const Register = () => {
+    //     setLoading(true)
+    //     if (method === 'login') {
+    //         navigate('/register')
+    //     } else {
+    //         navigate('/login')
+    //     }
+    // }
 
   return (
    <form onSubmit={handleSubmit} className="form-container">
