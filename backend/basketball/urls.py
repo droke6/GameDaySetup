@@ -1,8 +1,6 @@
-# basketball/urls.py
-
 from django.urls import path
-from .views import basketball
+from . import views
 
 urlpatterns = [
-    path('basketball/', basketball, name='basketball_upload'),
+    path('sort/', views.sort_basketball, name='sort_basketball'),
 ]

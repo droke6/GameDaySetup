@@ -2,8 +2,8 @@ import { useState, useRef } from 'react';
 import axios from 'axios';
 import { Form, Card } from 'react-bootstrap';
 import Navbar from '../components/Navbar';
-import '../styles/LoadingCircle.css'
-import '../styles/Popup.css'
+import '../styles/LoadingCircle.css';
+import '../styles/Popup.css';
 
 const Basketball = () => {
     const fileInputRef = useRef(null);
@@ -25,14 +25,23 @@ const Basketball = () => {
         formData.append('file', file);
 
         try {
-            const response = await axios.post('/api/basketball/', formData, {
+            const response = await axios.post('/basketball/sort/', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
+                responseType: 'blob', // Ensure response is treated as a file blob
             });
 
             if (response.status === 200) {
-                setPopupMessage('Game sheets created successfully. You can download them from your Downloads folder.');
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'sorted_data.xlsx');
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+
+                setPopupMessage('Game sheets created successfully. The file has been downloaded.');
             } else {
                 setPopupMessage(`Failed to create game sheets. Status code: ${response.status}`);
             }
