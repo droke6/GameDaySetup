@@ -26,4 +26,27 @@
     height: 100px; /* Adjust height as necessary */
 }
 
+@media (max-width: 550px) {
+    .top {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .dropdown {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%; /* Make it full width on small screens */
+    }
+
+    .navbar {
+        justify-content: center;
+        width: 100%; /* Make it full width on small screens */
+    }
+
+    .button-container {
+        flex-direction: column;
+        gap: 10px; /* Reduce the gap for smaller screens */
+        height: auto; /* Adjust height to fit content */
+    }
+}
 
