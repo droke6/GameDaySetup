@@ -1,29 +1,10 @@
-/* Volleyball.css */
-
 .top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
-  
-  .sign-out-button {
-    white-space: nowrap;
-  }
-  
-  @media (max-width: 550px) {
-    .top {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-    }
-  
-    .dropdown-items {
-      flex: 1;
-    }
-  
-    .sign-out-button {
-      white-space: nowrap;
-    }
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.sign-out-button {
+  white-space: nowrap;
+}

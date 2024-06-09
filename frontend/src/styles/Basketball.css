@@ -4,19 +4,6 @@
     align-items: center;
 }
 
-.dropdown {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    flex: 2;
-}
-
-.navbar {
-    display: flex;
-    align-items: center;
-}
-
 .button-container {
     display: flex;
     flex-direction: row;
@@ -51,6 +38,10 @@
         flex-direction: column;
         gap: 10px; /* Reduce the gap for smaller screens */
         height: auto; /* Adjust height to fit content */
+    }
+
+    .sign-out-button {
+        display: none;
     }
 }
 

@@ -1,0 +1,45 @@
+@media (min-width: 551px) {
+    .sign-out-button2 {
+        display: none;
+    }
+}
+
+@media (max-width: 550px) {
+  .top {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .dropdown-items {
+    flex: 1;
+  }
+
+  .sign-out-button {
+    display: none;
+  }
+
+  .sign-out-button2 {
+    white-space: nowrap;
+    padding: .5rem 1rem;
+    color: white;
+    background:#65081F;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 5px;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    width: auto;
+  }
+
+  .bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px; /* Add some margin to separate from the content above */
+  }
+}

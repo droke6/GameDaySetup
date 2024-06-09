@@ -1,20 +1,22 @@
 import { useRef, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
-import '../styles/Uploads.css';
 import axios from 'axios';
-import Dropdown from '../components/Dropdown';
+import { useNavigate } from 'react-router-dom';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants"
+import '../styles/Uploads.css';
 import '../styles/LoadingCircle.css';
 import '../styles/Popup.css';
 import '../styles/NetHeights.css'
-import { useNavigate } from 'react-router-dom';
-import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants"
+import '../styles/buttons.css'
+
 
 const NetHeights = () => {
     const navigate = useNavigate();
     const fileInputRef = useRef(null);
     const [loading, setLoading] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
 
     const handleGenerateNetHeightFile = async () => {
         const fileInput = fileInputRef.current;
@@ -65,15 +67,24 @@ const NetHeights = () => {
         navigate('/login');
       };
 
+      const toggleDropdown = () => {
+        setDropdownOpen(!dropdownOpen);
+      };
+
     return (
         <>
         <div className="top">
-        <div className="top">
-            <Dropdown className="dropdown" />
-            <button className='sign-out-button' type="button" onClick={handleLogout} style={{ whiteSpace: 'nowrap' }} >
-                Sign Out
-            </button>
-        </div>
+            <div className="dropdown-button" onClick={toggleDropdown} tabIndex={0} onBlur={() => setDropdownOpen(false)}>
+            <button className="btn btn-secondary">Volleyball Options...</button>
+                <div className={`dropdown-menu ${dropdownOpen ? 'show' : ''}`}>
+                    <div className="dropdown-item" onClick={() => navigate('/master-schedule')}>Sort Master Schedule</div>
+                    <div className="dropdown-item" onClick={() => navigate('/net-heights')}>Set Net Heights</div>
+                    <div className="dropdown-item" onClick={() => navigate('/game-sheets')}>Create Game Sheets</div>
+                </div>
+            </div>
+        <button className='sign-out-button' type="button" onClick={handleLogout} style={{ whiteSpace: 'nowrap' }}>
+          Sign Out
+        </button>
         </div>
         <h1>Net Heights</h1>
         <Card className='container'>
@@ -103,6 +114,11 @@ const NetHeights = () => {
             </div>
         </div>
         )}
+        <div className='bottom'>
+            <button className='sign-out-button2' type="button" onClick={handleLogout} style={{ whiteSpace: 'nowrap' }}>
+                Sign Out
+            </button>
+        </div>
         </>
     );
 };
