@@ -24,8 +24,8 @@ def generate_comp_game_sheet(worksheet, home_team, away_team, venue, date, time,
 
 
     worksheet.merge_range('O10:O23', 'COMPETITIVE LEAGUE SCORE SHEETS', comp_format)
-    worksheet.merge_range('C1:G1', f'Home Team: {home_team}', title_format)
-    worksheet.merge_range('J1:N1', f'Away Team: {away_team}', title_format)
+    worksheet.merge_range('A1:G1', f'Home Team: {home_team}', title_format)
+    worksheet.merge_range('I1:O1', f'Away Team: {away_team}', title_format)
     worksheet.merge_range('A3:A8', f'Court: {court}', vertical_format)
     worksheet.merge_range('A11:A16', f'Facility: {facility_name}', vertical_format)
     worksheet.merge_range('A19:A24', f'Time: {time}', vertical_format)
