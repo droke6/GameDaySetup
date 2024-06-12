@@ -1,3 +1,4 @@
+import logging
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import pandas as pd
@@ -6,6 +7,8 @@ from datetime import datetime
 from .comp_format import generate_comp_game_sheet
 from .core_format import generate_core_game_sheet
 import os
+
+logger = logging.getLogger(__name__)
 
 @csrf_exempt
 def generate_game_sheets(request):
@@ -18,7 +21,7 @@ def generate_game_sheets(request):
         with pd.ExcelWriter(output_filename, engine='xlsxwriter') as writer:
             for sheet_name in xlsx.sheet_names:
                 data = pd.read_excel(xlsx, sheet_name=sheet_name)
-                print(f"Processing sheet: {sheet_name}")
+                logger.debug(f"Processing sheet: {sheet_name}")
 
                 home_teams = []
                 away_teams = []
@@ -36,7 +39,7 @@ def generate_game_sheets(request):
                     dates.append(row['Date'])
                     times.append(row['Time'])
 
-                print(f"Total games in {sheet_name}: {len(home_teams)}")
+                logger.debug(f"Total games in {sheet_name}: {len(home_teams)}")
 
                 counter = 0
                 for i in range(len(home_teams)):
@@ -47,25 +50,25 @@ def generate_game_sheets(request):
                     date = pd.to_datetime(dates[counter]).strftime('%m/%d')
                     time = times[counter]
 
-                    print(f"Creating worksheet for {sheet_name} - Game {counter + 1}")
+                    logger.debug(f"Creating worksheet for {sheet_name} - Game {counter + 1}")
                     worksheet = writer.book.add_worksheet(f"{sheet_name}_Sheet_{counter + 1}")
 
                     counter = (counter + 1) % len(home_teams)
 
                     if 'Core' in league and '6th' in league:
-                        print(f"Generating core game sheet for 6th Grade Core - {home_team} vs {away_team}")
+                        logger.debug(f"Generating core game sheet for 6th Grade Core - {home_team} vs {away_team}")
                         generate_core_game_sheet(worksheet, home_team, away_team, venue, date, time, writer)
                     elif 'Competitive' in league and '6th' in league:
-                        print(f"Generating comp game sheet for 6th Grade Competitive - {home_team} vs {away_team}")
+                        logger.debug(f"Generating comp game sheet for 6th Grade Competitive - {home_team} vs {away_team}")
                         generate_comp_game_sheet(worksheet, home_team, away_team, venue, date, time, writer)
                     elif '1st' in league or '2nd' in league or '3rd' in league or '4th' in league or 'Core' in league:
-                        print(f"Generating core game sheet for {league} - {home_team} vs {away_team}")
+                        logger.debug(f"Generating core game sheet for {league} - {home_team} vs {away_team}")
                         generate_core_game_sheet(worksheet, home_team, away_team, venue, date, time, writer)
                     elif 'Competitive' in league or 'Coed' in league or '7th' in league or '8th' in league or '9th' in league or '11th' in league:
-                        print(f"Generating comp game sheet for {league} - {home_team} vs {away_team}")
+                        logger.debug(f"Generating comp game sheet for {league} - {home_team} vs {away_team}")
                         generate_comp_game_sheet(worksheet, home_team, away_team, venue, date, time, writer)
                     else:
-                        print(f"League not matched for game {counter + 1}: {league}")
+                        logger.warning(f"League not matched for game {counter + 1}: {league}")
 
         with open(output_filename, 'rb') as excel:
             response = HttpResponse(excel.read(), content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
