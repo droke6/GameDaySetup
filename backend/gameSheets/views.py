@@ -6,6 +6,10 @@ from datetime import datetime
 from .comp_format import generate_comp_game_sheet
 from .core_format import generate_core_game_sheet
 import os
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 @csrf_exempt
 def generate_game_sheets(request):
@@ -18,6 +22,7 @@ def generate_game_sheets(request):
         with pd.ExcelWriter(output_filename, engine='xlsxwriter') as writer:
             for sheet_name in xlsx.sheet_names:
                 data = pd.read_excel(xlsx, sheet_name=sheet_name)
+                logger.info(f"Processing sheet: {sheet_name}")
 
                 home_teams = []
                 away_teams = []
@@ -44,19 +49,22 @@ def generate_game_sheets(request):
                     date = pd.to_datetime(dates[counter]).strftime('%m/%d')
                     time = times[counter]
 
+                    logger.info(f"Creating worksheet for {sheet_name} - Game {counter + 1}")
                     worksheet = writer.book.add_worksheet(f"{sheet_name}_Sheet_{counter + 1}")
 
                     counter = (counter + 1) % len(home_teams)
 
                     if '1st' in league or '2nd' in league or '3rd' in league or '4th' in league or 'Core' in league:
+                        logger.info(f"Generating core game sheet for {league} - {home_team} vs {away_team}")
                         generate_core_game_sheet(worksheet, home_team, away_team, venue, date, time, writer)
                     elif 'Competitive' in league or 'Coed' in league or '7th' in league or '8th' in league or '9th' in league or '11th' in league:
+                        logger.info(f"Generating comp game sheet for {league} - {home_team} vs {away_team}")
                         generate_comp_game_sheet(worksheet, home_team, away_team, venue, date, time, writer)
 
         with open(output_filename, 'rb') as excel:
             response = HttpResponse(excel.read(), content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
             response['Content-Disposition'] = f'attachment; filename={output_filename}'
-        
+
         os.remove(output_filename)
         return response
 

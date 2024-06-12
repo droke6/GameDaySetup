@@ -162,3 +162,22 @@ CORS_ALLOW_CREDENTIALS = True
 
 CSRF_COOKIE_HTTPONLY = False  # Make sure CSRF cookie is accessible by JavaScript
 CSRF_USE_SESSIONS = True      # Store the CSRF token in the user's session
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
