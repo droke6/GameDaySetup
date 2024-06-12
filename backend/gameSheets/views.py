@@ -54,7 +54,13 @@ def generate_game_sheets(request):
 
                     counter = (counter + 1) % len(home_teams)
 
-                    if '1st' in league or '2nd' in league or '3rd' in league or '4th' in league or 'Core' in league:
+                    if 'Core' in league and '6th' in league:
+                        logger.info(f"Generating core game sheet for 6th Grade Core - {home_team} vs {away_team}")
+                        generate_core_game_sheet(worksheet, home_team, away_team, venue, date, time, writer)
+                    elif 'Competitive' in league and '6th' in league:
+                        logger.info(f"Generating comp game sheet for 6th Grade Competitive - {home_team} vs {away_team}")
+                        generate_comp_game_sheet(worksheet, home_team, away_team, venue, date, time, writer)
+                    elif '1st' in league or '2nd' in league or '3rd' in league or '4th' in league or 'Core' in league:
                         logger.info(f"Generating core game sheet for {league} - {home_team} vs {away_team}")
                         generate_core_game_sheet(worksheet, home_team, away_team, venue, date, time, writer)
                     elif 'Competitive' in league or 'Coed' in league or '7th' in league or '8th' in league or '9th' in league or '11th' in league:
