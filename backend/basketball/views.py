@@ -15,7 +15,7 @@ def sort_basketball(request):
                   "PSA - Murphy 1", "PSA - Murphy 2", "PSA - Murphy 3", "PSA - Murphy 4",
                   "PSA - Murphy 5", "PSA - Murphy 6", "PSA - Murphy 7", "PSA - Murphy 8",
                   "PSA 1 - Blue 1", "PSA 1 - Blue 2", "PSA 1 - Blue 3", "PSA 1 - Blue 4",
-                  "PSA 1 - Red 4", "PSA 1 - Red 5", "PSA 1 - Green 1",
+                  "PSA 1 - Red 4", "PSA 1 - Red 5", "PSA 1 - Green 1", "PSA 1 - Green 2", "PSA 1 - Green 3", "PSA 1 - Green 4",   
                   "PSA 2 - Silver 1", "PSA 2 - Silver 2", "PSA 2 - Silver 3", "PSA 2 - Silver 4",
                   "PSA 2 - Silver 5", "PSA 2 - Silver 6", "PSA 2 - Silver 7", "PSA 2 - Silver 8"]
 
