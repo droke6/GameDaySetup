@@ -62,7 +62,7 @@ def download_sorted_file(request):
 
             courts = {
                 'McKinney': ['PSA - McKinney 2','PSA - McKinney 3', 'PSA - McKinney 4', 'PSA - McKinney 5', 'PSA - McKinney 6', 'PSA - McKinney 7', 'PSA - McKinney 8'],
-                'Murphy': ['PSA - Murphy 2', 'PSA - Murphy 3', 'PSA - Murphy 4', 'PSA - Murphy 5', 'PSA - Murphy 7', 'PSA - Murphy 8'],
+                'Murphy': ['PSA - Murphy 2', 'PSA - Murphy 3', 'PSA - Murphy 4', 'PSA - Murphy 5', 'PSA - Murphy 6', 'PSA - Murphy 7', 'PSA - Murphy 8'],
                 'Plano': ['PSA 1 - Blue 5 (VB)', 'PSA 1 - Blue 4', 'PSA 1 - Blue 3', 'PSA 1 - Blue 2', 'PSA 1 - Blue 1','PSA 1 - Green 1', 'PSA 1 - Green 2', 'PSA 1 - Green 3', 'PSA 1 - Green 4', 'PSA 1 - Red 4', 'PSA 1 - Red 5']
             }
 
