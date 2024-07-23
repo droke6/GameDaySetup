@@ -82,23 +82,21 @@ def download_sorted_file(request):
             prev_date = None
             prev_venue = None
 
-            for idx, row in final_sort.iterrows():
+            for index, row in final_sort.iterrows():
                 current_date = row['Date']
                 current_venue = row['Venue']
 
                 if prev_date != current_date or prev_venue != current_venue:
-                    rows_to_insert.append(idx)
+                    rows_to_insert.append(index)
                 
                 prev_date = current_date
                 prev_venue = current_venue
 
             # Create a new DataFrame with blank rows inserted
-            new_rows = []
-            for idx in rows_to_insert:
-                new_rows.append(pd.Series(dtype='object'))  # Create an empty row with NaN values
-
-            final_sort = pd.concat([final_sort.iloc[:idx+1].append(new_rows[idx], ignore_index=True) for idx in range(len(rows_to_insert))], ignore_index=True)
-
+            for idx in reversed(rows_to_insert):
+                final_sort = final_sort.append(pd.Series(), ignore_index=True)
+                final_sort = final_sort.iloc[:idx+1].append(final_sort.iloc[idx:])
+            
             return final_sort
 
         locations = ['McKinney', 'Murphy', 'Plano']
