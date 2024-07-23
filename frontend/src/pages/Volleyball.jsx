@@ -35,7 +35,7 @@ function Volleyball() {
 
       <div className="cards">
 
-      <div>
+      <div className='left'>
         <MasterSchedule />
       </div>
 
