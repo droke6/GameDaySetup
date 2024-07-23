@@ -8,3 +8,7 @@
 .sign-out-button {
   white-space: nowrap;
 }
+
+.first-row {
+  display: flex;
+}

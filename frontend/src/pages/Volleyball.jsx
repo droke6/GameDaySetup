@@ -32,8 +32,10 @@ function Volleyball() {
         </button>
         </div>
       </div>
+      <div className="first-row">
       <MasterSchedule />
       <NetHeights />
+      </div>
       <GameSheets />
       <br></br>
       <a href="/">Home</a>
