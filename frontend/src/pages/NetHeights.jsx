@@ -91,21 +91,15 @@ const NetHeights = () => {
             </div>
         </Card>
         <br></br>
-        <a href="/">Home</a>
         {loading && <div className="loading-circle"></div>}
         {showPopup && (
         <div className="popup">
             <div className="popup-content">
                 <button className="close-button" onClick={handleClosePopup}>x</button>
-                <p>Net Heights File Created. <a href="/game-sheets">Click here to Create Game Sheets</a></p>
+                <p>Net Heights File Created.</p>
             </div>
         </div>
         )}
-        {/* <div className='bottom'>
-            <button className='sign-out-button2' type="button" onClick={handleLogout} style={{ whiteSpace: 'nowrap' }}>
-                Sign Out
-            </button>
-        </div> */}
         </>
     );
 };

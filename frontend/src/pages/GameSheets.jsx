@@ -91,18 +91,12 @@ const GameSheets = () => {
             </div>
         </Card>
         <br></br>
-        <a href="/">Home</a>
-        {/* <div className='bottom'>
-        <button className='sign-out-button2' type="button" onClick={handleLogout} style={{ whiteSpace: 'nowrap' }}>
-          Sign Out
-        </button>
-        </div> */}
         {loading && <div className="loading-circle"></div>}
         {showPopup && (
             <div className="popup">
             <div className="popup-content">
                 <button className="close-button" onClick={handleClosePopup}>x</button>
-                <p>Games Sheets Created. <a href="/">Click here to return to Home page.</a></p>
+                <p>Games Sheets Created.</p>
             </div>
             </div>
         )}

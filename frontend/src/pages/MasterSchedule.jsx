@@ -107,13 +107,12 @@ const MasterSchedule = () => {
         </div>
       </Card>
       <br />
-      <a href="/">Home</a>
       {loading && <div className="loading-circle"></div>}
       {showPopup && (
         <div className="popup">
           <div className="popup-content">
           <button className="close-button" onClick={handleClosePopup}>x</button>
-            <p>Games Sorted. <a href="/net-heights">Click here to Set Net Heights</a></p>
+            <p>Games Sorted.</p>
           </div>
         </div>
       )}
