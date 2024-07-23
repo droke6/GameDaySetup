@@ -9,7 +9,7 @@
   white-space: nowrap;
 }
 
-.first-row {
+.cards{
   display: flex;
   justify-content: space-evenly;
 }
