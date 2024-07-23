@@ -70,7 +70,7 @@ const MasterSchedule = () => {
   return (
     <>
       <div>
-      <h1>Master Schedule Sorter</h1>
+      <h1>Schedule Sorter</h1>
       <Card className="container">
         <Card.Text>
           <ul>
