@@ -68,6 +68,7 @@ def download_sorted_file(request):
 
             df = pd.DataFrame(data_dict)
 
+            # Filter data by location and game dates
             dates = game_dates
             filtered_data = df[df['Date'].isin(dates)]
             venues_to_include = courts.get(location, [])
@@ -76,6 +77,26 @@ def download_sorted_file(request):
             court_sorted_data['Date'] = court_sorted_data['Date'].str.split().str[0]
             final_sort = court_sorted_data.drop(columns=['Event ID', 'Area'])
 
+            # Insert blank rows when date or venue changes
+            rows_to_insert = []
+            prev_date = None
+            prev_venue = None
+
+            for index, row in final_sort.iterrows():
+                current_date = row['Date']
+                current_venue = row['Venue']
+
+                if prev_date != current_date or prev_venue != current_venue:
+                    rows_to_insert.append(index)
+                
+                prev_date = current_date
+                prev_venue = current_venue
+
+            # Create a new DataFrame with blank rows inserted
+            for idx in reversed(rows_to_insert):
+                final_sort = final_sort.append(pd.Series(), ignore_index=True)
+                final_sort = final_sort.iloc[:idx+1].append(final_sort.iloc[idx:])
+            
             return final_sort
 
         locations = ['McKinney', 'Murphy', 'Plano']
