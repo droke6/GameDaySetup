@@ -73,6 +73,7 @@ const NetHeights = () => {
 
     return (
         <>
+        <div>
         <h1>Net Heights</h1>
         <Card className='container'>
             <Card.Text>
@@ -90,6 +91,7 @@ const NetHeights = () => {
                 </button>
             </div>
         </Card>
+        </div>
         <br></br>
         {loading && <div className="loading-circle"></div>}
         {showPopup && (

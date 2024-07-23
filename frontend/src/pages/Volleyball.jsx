@@ -33,8 +33,8 @@ function Volleyball() {
         </div>
       </div>
       <div className="first-row">
-      <MasterSchedule />
-      <NetHeights />
+        <MasterSchedule />
+        <NetHeights />
       </div>
       <GameSheets />
       <br></br>
