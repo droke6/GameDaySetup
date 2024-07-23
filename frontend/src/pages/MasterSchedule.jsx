@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker'; // Import DatePicker
-import 'react-datepicker/dist/react-datepicker.css'; // Import Datepicker CSS
+// import 'react-datepicker/dist/react-datepicker.css'; // Import Datepicker CSS
 import '../styles/Popup.css';
 import '../styles/Uploads.css';
 import '../styles/buttons.css';
