@@ -78,7 +78,7 @@ const NetHeights = () => {
         <Card className='container'>
             <Card.Text>
             <ul>
-            <h3>Upload Sorted Games File</h3>
+            <h3>Select Sorted Games File</h3>
             </ul>
             </Card.Text>
             <hr />
