@@ -35,7 +35,7 @@ const Basketball = () => {
                 },
                 responseType: 'blob',
             });
-        
+
             if (response.status === 200) {
                 const url = window.URL.createObjectURL(new Blob([response.data]));
                 const link = document.createElement('a');
@@ -44,7 +44,7 @@ const Basketball = () => {
                 document.body.appendChild(link);
                 link.click();
                 link.remove();
-        
+
                 setPopupMessage('Game sheets created successfully. The file has been downloaded.');
             } else {
                 setPopupMessage(`Failed to create game sheets. Status code: ${response.status}`);
@@ -60,7 +60,7 @@ const Basketball = () => {
             setLoading(false);
             setShowPopup(true);
         }
-    }        
+    };
 
     const handleLogout = () => {
         localStorage.removeItem(ACCESS_TOKEN);
