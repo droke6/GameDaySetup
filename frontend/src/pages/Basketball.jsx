@@ -29,7 +29,7 @@ const Basketball = () => {
         formData.append('file', file);
 //here - link error (missing sort)
         try {
-            const response = await axios.post('/api/basketball/', formData, {
+            const response = await axios.post('/api/basketball/sort/', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
