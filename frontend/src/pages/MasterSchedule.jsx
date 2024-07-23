@@ -2,31 +2,14 @@ import { useRef, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import '../styles/Popup.css';
+import '../styles/Popup.css' 
 import '../styles/Uploads.css';
-import '../styles/buttons.css';
+import '../styles/buttons.css'
 
 const MasterSchedule = () => {
   const fileInputRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
-  const [dates, setDates] = useState({
-    date1: null,
-    date2: null,
-    date3: null,
-  });
-
-  const handleDateChange = (date, field) => {
-    setDates(prevDates => ({
-      ...prevDates,
-      [field]: date,
-    }));
-  };
-
-  const navigate = useNavigate();
 
   const handleSortGames = async () => {
     const fileInput = fileInputRef.current;
@@ -36,9 +19,9 @@ const MasterSchedule = () => {
     }
     const formData = new FormData();
     formData.append('file', fileInput.files[0]);
-    formData.append('date1', dates.date1 ? dates.date1.toLocaleDateString() : '');
-    formData.append('date2', dates.date2 ? dates.date2.toLocaleDateString() : '');
-    formData.append('date3', dates.date3 ? dates.date3.toLocaleDateString() : '');
+    formData.append('date1', document.getElementById('date1').value);
+    formData.append('date2', document.getElementById('date2').value);
+    formData.append('date3', document.getElementById('date3').value);
 
     setLoading(true);
 
@@ -72,72 +55,57 @@ const MasterSchedule = () => {
 
   const handleClosePopup = () => {
     setShowPopup(false);
-  };
+};
 
   return (
     <>
       <div>
-        <h1>Schedule Sorter</h1>
-        <Card className="container">
-          <Card.Text>
-            <ul>
-              <h3>Select Game Dates</h3>
-            </ul>
-          </Card.Text>
-          <hr />
-          <div className="dates">
-            <Form.Group>
-              <Form.Label>Select Date 1:</Form.Label>
-              <DatePicker
-                selected={dates.date1}
-                onChange={date => handleDateChange(date, 'date1')}
-                dateFormat="MM/dd/yyyy"
-                className="form-control"
-              />
-            </Form.Group>
+      <h1>Schedule Sorter</h1>
+      <Card className="container">
+        <Card.Text>
+          <ul>
+          <h3>Type in Game Dates - MM/DD/YYYY</h3>
+          </ul>
+        </Card.Text>
+        <hr />
+        <div className="dates">
+          <Form.Group>
+            <Form.Label>Select Date 1:</Form.Label>
+            <Form.Control type="text" id="date1" name="date1" />
+          </Form.Group>
 
-            <Form.Group>
-              <Form.Label>Select Date 2:</Form.Label>
-              <DatePicker
-                selected={dates.date2}
-                onChange={date => handleDateChange(date, 'date2')}
-                dateFormat="MM/dd/yyyy"
-                className="form-control"
-              />
-            </Form.Group>
+          <Form.Group>
+            <Form.Label>Select Date 2:</Form.Label>
+            <Form.Control type="text" id="date2" name="date2" />
+          </Form.Group>
 
-            <Form.Group>
-              <Form.Label>Select Date 3:</Form.Label>
-              <DatePicker
-                selected={dates.date3}
-                onChange={date => handleDateChange(date, 'date3')}
-                dateFormat="MM/dd/yyyy"
-                className="form-control"
-              />
-            </Form.Group>
+          <Form.Group>
+            <Form.Label>Select Date 3:</Form.Label>
+            <Form.Control type="text" id="date3" name="date3" />
+          </Form.Group>
+        </div>
+        <br /><br />
+        <hr />
+        <Form.Label>Upload Master Schedule</Form.Label>
+        <div className="button-container">
+          <Form.Group controlId="formFileLg" className="mb-3">
+            <Form.Control type="file" size="lg" ref={fileInputRef} />
+          </Form.Group>
+          <button className="btn btn-primary" onClick={handleSortGames} disabled={loading}>
+            {loading ? 'Loading...' : 'Sort Games'}
+          </button>
+        </div>
+      </Card>
+      <br />
+      {loading && <div className="loading-circle"></div>}
+      {showPopup && (
+        <div className="popup">
+          <div className="popup-content">
+          <button className="close-button" onClick={handleClosePopup}>x</button>
+            <p>Games Sorted.</p>
           </div>
-          <br /><br />
-          <hr />
-          <Form.Label>Upload Master Schedule</Form.Label>
-          <div className="button-container">
-            <Form.Group controlId="formFileLg" className="mb-3">
-              <Form.Control type="file" size="lg" ref={fileInputRef} />
-            </Form.Group>
-            <button className="btn btn-primary" onClick={handleSortGames} disabled={loading}>
-              {loading ? 'Loading...' : 'Sort Games'}
-            </button>
-          </div>
-        </Card>
-        <br />
-        {loading && <div className="loading-circle"></div>}
-        {showPopup && (
-          <div className="popup">
-            <div className="popup-content">
-              <button className="close-button" onClick={handleClosePopup}>x</button>
-              <p>Games Sorted.</p>
-            </div>
-          </div>
-        )}
+        </div>
+      )}
       </div>
     </>
   );
