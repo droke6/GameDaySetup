@@ -61,31 +61,14 @@ const MasterSchedule = () => {
     setShowPopup(false);
 };
 
-const handleLogout = () => {
-  localStorage.removeItem(ACCESS_TOKEN);
-  localStorage.removeItem(REFRESH_TOKEN);
-  navigate('/login');
-};
-
-const toggleDropdown = () => {
-  setDropdownOpen(!dropdownOpen);
-};
+// const handleLogout = () => {
+//   localStorage.removeItem(ACCESS_TOKEN);
+//   localStorage.removeItem(REFRESH_TOKEN);
+//   navigate('/login');
+// };
 
   return (
     <>
-      <div className="top">
-        <div className="dropdown-button" onClick={toggleDropdown} tabIndex={0} onBlur={() => setDropdownOpen(false)}>
-          <button className="btn btn-secondary">Volleyball Options...</button>
-          <div className={`dropdown-menu ${dropdownOpen ? 'show' : ''}`}>
-              <div className="dropdown-item" onClick={() => navigate('/master-schedule')}>Sort Master Schedule</div>
-              <div className="dropdown-item" onClick={() => navigate('/net-heights')}>Set Net Heights</div>
-              <div className="dropdown-item" onClick={() => navigate('/game-sheets')}>Create Game Sheets</div>
-          </div>
-        </div>
-        <button className='sign-out-button' type="button" onClick={handleLogout} style={{ whiteSpace: 'nowrap' }}>
-          Sign Out
-        </button>
-      </div>
       <div>
       <h1>Master Schedule Sorter</h1>
       <Card className="container">
@@ -125,11 +108,6 @@ const toggleDropdown = () => {
       </Card>
       <br />
       <a href="/">Home</a>
-      <div className='bottom'>
-            <button className='sign-out-button2' type="button" onClick={handleLogout} style={{ whiteSpace: 'nowrap' }}>
-                Sign Out
-            </button>
-        </div>
       {loading && <div className="loading-circle"></div>}
       {showPopup && (
         <div className="popup">
