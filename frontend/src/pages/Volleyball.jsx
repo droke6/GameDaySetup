@@ -5,6 +5,10 @@ import '../styles/Volleyball.css';
 import '../styles/bootstrap-dropdown.css';
 import '../styles/buttons.css'
 
+import MasterSchedule from './MasterSchedule'
+import NetHeights from './NetHeights'
+import GameSheets from './GameSheets'
+
 function Volleyball() {
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -22,21 +26,25 @@ function Volleyball() {
   return (
     <>
       <div className="top">
-        <div className="dropdown-button" onClick={toggleDropdown} tabIndex={0} onBlur={() => setDropdownOpen(false)}>
+        {/* <div className="dropdown-button" onClick={toggleDropdown} tabIndex={0} onBlur={() => setDropdownOpen(false)}>
           <button className="btn btn-secondary">Volleyball Options...</button>
           <div className={`dropdown-menu ${dropdownOpen ? 'show' : ''}`}>
           <div className="dropdown-item" onClick={() => navigate('/master-schedule')}>Sort Master Schedule</div>
           <div className="dropdown-item" onClick={() => navigate('/net-heights')}>Set Net Heights</div>
           <div className="dropdown-item" onClick={() => navigate('/game-sheets')}>Create Game Sheets</div>
         </div>
-        </div>
+        </div> */}
         <div>
         <button className='sign-out-button' type="button" onClick={handleLogout} style={{ whiteSpace: 'nowrap' }}>
           Sign Out
         </button>
         </div>
       </div>
-      <div>
+      <MasterSchedule />
+      <NetHeights />
+      <GameSheets />
+
+      {/* <div>
         <h1>Volleyball Sheets</h1>
         <h2>Instructions</h2>
         <ul>
@@ -52,7 +60,7 @@ function Volleyball() {
         <button className='sign-out-button2' type="button" onClick={handleLogout} style={{ whiteSpace: 'nowrap' }}>
           Sign Out
         </button>
-      </div>
+      </div> */}
     </>
   );
 }
