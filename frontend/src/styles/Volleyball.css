@@ -16,7 +16,12 @@
   align-items: center;
 }
 
-.left {
+/* .left {
   display: flex;
   align-items: center;
+} */
+
+.bottom {
+  display: flex;
+  justify-content: space-evenly;
 }

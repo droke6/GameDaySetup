@@ -38,7 +38,7 @@ function Volleyball() {
           <MasterSchedule />
         </div>
 
-        <div>
+        <div className='bottom'>
           <NetHeights />
           <GameSheets />
         </div>
