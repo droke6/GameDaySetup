@@ -27,7 +27,7 @@ const Basketball = () => {
         const file = fileInput.files[0];
         const formData = new FormData();
         formData.append('file', file);
-//missing sort
+
         try {
             const response = await axios.post('/api/basketball/', formData, {
                 headers: {
