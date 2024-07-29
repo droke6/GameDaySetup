@@ -35,11 +35,11 @@ function Volleyball() {
 
       <div className="cards">
 
-      <div className='top'>
+      <div className='left'>
         <MasterSchedule />
       </div>
 
-      <div className='bottom'>
+      <div>
         <NetHeights />
         <GameSheets />
       </div>
