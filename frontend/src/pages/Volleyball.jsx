@@ -34,16 +34,14 @@ function Volleyball() {
       </div>
 
       <div className="cards">
+        <div className='left'>
+          <MasterSchedule />
+        </div>
 
-      <div className='left'>
-        <MasterSchedule />
-      </div>
-
-      <div>
-        <NetHeights />
-        <GameSheets />
-      </div>
-
+        <div>
+          <NetHeights />
+          <GameSheets />
+        </div>
       </div>
 
       <br></br>
