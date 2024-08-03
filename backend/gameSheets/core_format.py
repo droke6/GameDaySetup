@@ -98,8 +98,8 @@ def generate_core_game_sheet(worksheet, home_team, away_team, venue, date, time,
     court = venue.split()[-1]
 
     worksheet.merge_range('B1:M1', "CORE - REGULAR SEASON GAME SCORE SHEET", title_format)
-    worksheet.merge_range('B2:M2', f"← Home Team: {home_team}", game_format)
-    worksheet.merge_range('B18:M18', f"Away Team: {away_team} →", game_format)
+    worksheet.merge_range('B2:M2', f"← ← Home Team: {home_team}", game_format)
+    worksheet.merge_range('B18:M18', f"Away Team: {away_team} → →", game_format)
     worksheet.merge_range('A2:A7', f"Court: {court}", vertical_format)
     worksheet.merge_range('A10:A16', f"Facility: {facility_name}", vertical_format)
     worksheet.merge_range('A19:A24', f"Time: {time}", vertical_format)
