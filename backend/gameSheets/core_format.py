@@ -41,16 +41,16 @@ def generate_core_game_sheet(worksheet, home_team, away_team, venue, date, time,
         count2 += 1
         
     for player_number in player_numbers3:
-        worksheet.write(player_number, "", number_format)
+        worksheet.write(player_number, "#", number_format)
         
     for player_number in player_numbers4:
-        worksheet.write(player_number, "", number_format)
+        worksheet.write(player_number, "#", number_format)
         
     for player_number in player_numbers5:
-        worksheet.write(player_number, "", number_format)
+        worksheet.write(player_number, "#", number_format)
         
     for player_number in player_numbers6:
-        worksheet.write(player_number, "", number_format)
+        worksheet.write(player_number, "#", number_format)
 
     game1_range = ['C5:E5', 'C21:E21']
     game2_range = ['G5:I5', 'G21:I21']
