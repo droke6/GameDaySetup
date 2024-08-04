@@ -27,7 +27,10 @@ def generate_core_game_sheet(worksheet, home_team, away_team, venue, date, time,
 
     player_numbers1 = ["B6", "B7", "B8", "B9", "B10", "B11", "B12", "B13", "B14", "B15", "B16", "B17"]
     player_numbers2 = ["B22", "B23", "B24", "B25", "B26", "B27", "B28", "B29", "B30", "B31", "B32", "B33"]
-    player_numbers3 = ["G6:17"]
+    player_numbers3 = ["G6", "G7", "G8", "G9", "G10", "G11", "G12", "G13", "G14", "G15", "G16", "G17"]
+    player_numbers4 = ["K6", "K7", "K8", "K9", "K10", "K11", "K12", "K13", "K14", "K15", "K16", "K17"]
+    player_numbers5 = ["G22", "G23", "G24", "G25", "G26", "G27", "G28", "G29", "G30", "G31", "G32", "G33"]
+    player_numbers6 = ["K22", "K23", "K24", "K25", "K26", "K27", "K28", "K29", "K30", "K31", "K32", "K33"]
 
     for player_number in player_numbers1:
         worksheet.write(player_number, count1, number_format)
@@ -38,6 +41,15 @@ def generate_core_game_sheet(worksheet, home_team, away_team, venue, date, time,
         count2 += 1
         
     for player_number in player_numbers3:
+        worksheet.write(player_number, border_format)
+        
+    for player_number in player_numbers4:
+        worksheet.write(player_number, border_format)
+        
+    for player_number in player_numbers5:
+        worksheet.write(player_number, border_format)
+        
+    for player_number in player_numbers6:
         worksheet.write(player_number, border_format)
 
     game1_range = ['C5:E5', 'C21:E21']
@@ -62,14 +74,14 @@ def generate_core_game_sheet(worksheet, home_team, away_team, venue, date, time,
               "C15:E15", "C16:E16", "C17:E17",
               "H6:I6", "H7:I7", "H8:I8", "H9:I9", "H10:I10", "H11:I11", "H12:I12", "H13:I13", "H14:I14",
               "H15:I15", "H16:I16", "H17:I17",
-              "N6:M6", "N7:M7", "N8:M8", "N9:M9", "N10:M10", "N11:M11", "N12:M12", "N13:M13", "N14:M14",
-              "N15:M15", "N16:M16", "N17:M17",
+              "L6:M6", "L7:M7", "L8:M8", "L9:M9", "L10:M10", "L11:M11", "L12:M12", "L13:M13", "L14:M14",
+              "L15:M15", "L16:M16", "L17:M17",
               "C22:E22", "C23:E23", "C24:E24", "C25:E25", "C26:E26", "C27:E27", "C28:E28", "C29:E29", "C30:E30",
               "C31:E31", "C32:E32", "C33:E33",
               "H22:I22", "H23:I23", "H24:I24", "H25:I25", "H26:I26", "H27:I27", "H28:I28", "H29:I29", "H30:I30",
               "H31:I31", "H32:I32", "H33:I33",
-              "N22:M22", "N23:M23", "N24:M24", "N25:M25", "N26:M26", "N27:M27", "N28:M28", "N29:M29", "N30:M30",
-              "N31:M31", "N32:M32", "N33:M33",
+              "L22:M22", "L23:M23", "L24:M24", "L25:M25", "L26:M26", "L27:M27", "L28:M28", "L29:M29", "L30:M30",
+              "L31:M31", "L32:M32", "L33:M33",
               ]
     for score in scores:
         worksheet.merge_range(score, '', border_format)
