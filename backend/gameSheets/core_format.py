@@ -90,13 +90,13 @@ def generate_core_game_sheet(worksheet, home_team, away_team, venue, date, time,
     # for total_score in total_scores:
     #     worksheet.write(total_score, 'Game 1 Total Score', total_score_format)
 
-    # serves = ['C3', 'C19', 'G3', 'G19', 'K3', 'K19']
-    # for serve in serves:
-    #     worksheet.write(serve, 'Serve', serve_timeout)
+    serves = ['C3']
+    for serve in serves:
+        worksheet.write(serve, 'Serve', serve_timeout)
 
-    # time_outs = ['C4', 'C20', 'G4', 'G20', 'K4', 'K20']
-    # for time_out in time_outs:
-    #     worksheet.write(time_out, 'Time Outs', serve_timeout)
+    time_outs = ['C4']
+    for time_out in time_outs:
+        worksheet.write(time_out, 'Time Outs', serve_timeout)
 
     serves_y_n = ['D3:E3', 'D19:E19', 'G3:I3', 'G19:I19', 'K3:M3', 'K19:M19']
     for cell in serves_y_n:
