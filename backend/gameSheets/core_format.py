@@ -90,19 +90,19 @@ def generate_core_game_sheet(worksheet, home_team, away_team, venue, date, time,
     # for total_score in total_scores:
     #     worksheet.write(total_score, 'Game 1 Total Score', total_score_format)
 
-    serves = ['C3']
-    for serve in serves:
-        worksheet.write(serve, 'Serve', serve_timeout)
+    # serves = ['C3']
+    # for serve in serves:
+    #     worksheet.write(serve, 'Serve', serve_timeout)
 
-    time_outs = ['C4']
-    for time_out in time_outs:
-        worksheet.write(time_out, 'Time Outs', serve_timeout)
+    # time_outs = ['C4']
+    # for time_out in time_outs:
+    #     worksheet.write(time_out, 'Time Outs', serve_timeout)
 
-    serves_y_n = ['D3:E3', 'D19:E19', 'G3:I3', 'G19:I19', 'K3:M3', 'K19:M19']
+    serves_y_n = ['C3:E3', 'C19:E19', 'G3:I3', 'G19:I19', 'K3:M3', 'K19:M19']
     for cell in serves_y_n:
         worksheet.merge_range(cell, 'Serve        Y          N', center_align)
 
-    one_two = ['D4:E4', 'D20:E20', 'G4:I4', 'G20:I20', 'K4:M4', 'K20:M20']
+    one_two = ['C4:E4', 'C20:E20', 'G4:I4', 'G20:I20', 'K4:M4', 'K20:M20']
     for cell in one_two:
         worksheet.merge_range(cell, 'Time Outs        1          2', center_align)
 
